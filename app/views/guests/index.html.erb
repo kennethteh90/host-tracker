@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <div class="col-12">
+
+    <h3>Host Guest Tracker</h3><br>
+
+    <table class="my_table">
+      <thead class="thead-inverse">
+        <tr>
+          <th>Guest Name(s)</th>
+          <th>Guest Age(s)</th>
+          <th>Description</th>
+          <th>Host(s) Connected</th>
+          <th>Guest(s) seated at</th>
+          <th>Leader/Pastor?</th>
+          <th>To be connected?</th>
+          <th colspan="2">Action Plan</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @guests.each do |guest| %>
+        <tr>
+          <td><%= guest.name %></td>
+          <td><%= guest.age %></td>
+          <td><%= guest.description %></td>
+          <td><%= guest.hostconnected %></td>
+          <td><%= guest.whereseated %></td>
+          <td><%= guest.leaderorpastor %></td>
+          <td><%= guest.tobeconnected %></td>
+          <td><%= guest.actionplan %></td>
+          <td><%= link_to 'Edit', edit_guest_path(guest) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+
+    </table>
+    <br>
+    <%= link_to 'Add new guest', new_guest_path, class: "btn btn-info" %>
+    <%= link_to 'Export to Telegram', export_path, class: "btn btn-outline-primary" %>
+  </div>
+</div>

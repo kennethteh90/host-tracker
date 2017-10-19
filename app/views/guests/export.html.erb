@@ -1,0 +1,31 @@
+<%= link_to 'Back to home', guests_path, class: "btn btn-primary" %>
+
+
+<!-- 1. Define some markup -->
+<button class="btn" data-clipboard-text="
+<% @guests.each do |guest| %>
+Guest Name(s): <%= guest.name %>
+Guest Age(s): <%= guest.age %>
+Description: <%= guest.description %>
+Host(s) Connected: <%= guest.hostconnected %>
+Guest(s) seated at: <%= guest.whereseated %>
+Leader/Pastor?: <%= guest.leaderorpastor %>
+To be connected?: <%= guest.tobeconnected %>
+Action Plan: <%= guest.actionplan %>
+
+<% end %>
+">Copy</button>
+
+<!-- 2. Include library -->
+<script src="../dist/clipboard.min.js"></script>
+
+<!-- 3. Instantiate clipboard by passing a string selector -->
+<script>
+var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e) {
+    console.log(e);
+});
+clipboard.on('error', function(e) {
+    console.log(e);
+});
+</script>
