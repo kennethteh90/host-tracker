@@ -13,7 +13,7 @@
           <th>Guest(s) seated at</th>
           <th>Leader/Pastor?</th>
           <th>To be connected?</th>
-          <th colspan="2">Action Plan</th>
+          <th colspan="3">Action Plan</th>
         </tr>
       </thead>
       <tbody>
@@ -28,6 +28,7 @@
           <td><%= guest.tobeconnected %></td>
           <td><%= guest.actionplan %></td>
           <td><%= link_to 'Edit', edit_guest_path(guest) %></td>
+          <td><%= link_to 'Delete', guest_path(guest), method: :delete %></td>
         </tr>
         <% end %>
       </tbody>
@@ -35,6 +36,32 @@
     </table>
     <br>
     <%= link_to 'Add new guest', new_guest_path, class: "btn btn-info" %>
-    <%= link_to 'Export to Telegram', export_path, class: "btn btn-outline-primary" %>
+    <!-- 1. Define some markup -->
+    <button class="btn" data-clipboard-text="
+    <% @guests.each do |guest| %>
+Guest Name(s): <%= guest.name %>
+Guest Age(s): <%= guest.age %>
+Description: <%= guest.description %>
+Host(s) Connected: <%= guest.hostconnected %>
+Guest(s) seated at: <%= guest.whereseated %>
+Leader/Pastor?: <%= guest.leaderorpastor %>
+To be connected?: <%= guest.tobeconnected %>
+Action Plan: <%= guest.actionplan %>
+
+<% end %>">Export to Telegram</button>
+
+    <!-- 2. Include library -->
+    <script src="../dist/clipboard.min.js"></script>
+
+    <!-- 3. Instantiate clipboard by passing a string selector -->
+    <script>
+    var clipboard = new Clipboard('.btn');
+    clipboard.on('success', function(e) {
+        console.log(e);
+    });
+    clipboard.on('error', function(e) {
+        console.log(e);
+    });
+    </script>
   </div>
 </div>
