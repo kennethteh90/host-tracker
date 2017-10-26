@@ -2,28 +2,43 @@
   <div class="col-12">
 
     <h3>Host Guest Tracker</h3><br>
+
+    <table class="my_table">
+      <thead class="thead-inverse">
+        <tr>
+          <th>Guest Name(s)</th>
+          <th>Guest Age(s)</th>
+          <th>Description</th>
+          <th>Host(s) Connected</th>
+          <th>Guest(s) seated at</th>
+          <th>Leader/Pastor?</th>
+          <th>To be connected?</th>
+          <th colspan="3">Action Plan</th>
+        </tr>
+      </thead>
+      <tbody>
         <% @guests.each do |guest| %>
-          <div class="card p-1">
-
-          <p><b>Guest Name(s):</b> <%= guest.name %></p>
-          <p><b>Guest Age(s:</b> <%= guest.age %></p>
-          <p><b>Description:</b> <%= guest.description %></p>
-          <p><b>Host(s) Connected:</b> <%= guest.hostconnected %></p>
-          <p><b>Guest(s) seated at:</b> <%= guest.whereseated %></p>
-          <p><b>Leader/Pastor?:</b> <%= guest.leaderorpastor %></p>
-          <p><b>To be connected?:</b> <%= guest.tobeconnected %></p>
-          <p><b>Action Plan:</b> <%= guest.actionplan %></p>
-          <p><%= link_to 'Edit', edit_guest_path(guest) %></p>
-          <p><%= link_to 'Delete', guest_path(guest), method: :delete %></p>
-
-          </div>
+        <tr>
+          <td><%= guest.name %></td>
+          <td><%= guest.age %></td>
+          <td><%= guest.description %></td>
+          <td><%= guest.hostconnected %></td>
+          <td><%= guest.whereseated %></td>
+          <td><%= guest.leaderorpastor %></td>
+          <td><%= guest.tobeconnected %></td>
+          <td><%= guest.actionplan %></td>
+          <td><%= link_to 'Edit', edit_guest_path(guest) %></td>
+          <td><%= link_to 'Delete', guest_path(guest), method: :delete %></td>
+        </tr>
         <% end %>
+      </tbody>
 
+    </table>
     <br>
     <%= link_to 'Add new guest', new_guest_path, class: "btn btn-info" %>
     <!-- 1. Define some markup -->
     <button class="btn" data-clipboard-text="
-<% @guests.each do |guest| %>
+    <% @guests.each do |guest| %>
 Guest Name(s): <%= guest.name %>
 Guest Age(s): <%= guest.age %>
 Description: <%= guest.description %>
