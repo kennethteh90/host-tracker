@@ -1,7 +1,8 @@
 class GuestsController < ApplicationController
 
   def index
-    @guests = Guest.all
+    @guests = Guest.all.order(:created_at)
+    @guests_to_export = Guest.where("to_export = true")
   end
 
   def show
@@ -24,8 +25,11 @@ class GuestsController < ApplicationController
 
   def update
     @guest = Guest.find(params[:id])
-    @guest.update(guest_params)
-    redirect_to guests_path
+    if @guest.update(guest_params)
+      redirect_to guests_path
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -37,10 +41,16 @@ class GuestsController < ApplicationController
     @guests = Guest.all
   end
 
+  def to_export
+    @guest = Guest.find(params[:id])
+    @guest.toggle(:to_export).save
+    redirect_to guests_path
+  end
+
   private
 
   def guest_params
-    params.require(:guest).permit(:name, :age, :description, :hostconnected, :whereseated, :leaderorpastor, :tobeconnected, :actionplan)
+    params.require(:guest).permit(:name, :age, :description, :hostconnected, :whereseated, :leaderorpastor, :tobeconnected, :actionplan, :to_export)
   end
 
 end
