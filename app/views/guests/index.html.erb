@@ -1,7 +1,7 @@
+<h3 class="jumbotron fluid">Host Guest Tracker</h3><br>
 <div class="container-fluid">
   <div class="col-12">
 
-    <h3>Host Guest Tracker</h3><br>
         <% @guests.each do |guest| %>
           <div class="card p-1">
 
@@ -13,8 +13,11 @@
           <p><b>Leader/Pastor?:</b> <%= guest.leaderorpastor %></p>
           <p><b>To be connected?:</b> <%= guest.tobeconnected %></p>
           <p><b>Action Plan:</b> <%= guest.actionplan %></p>
-          <p><%= link_to 'Edit', edit_guest_path(guest) %></p>
-          <p><%= link_to 'Delete', guest_path(guest), method: :delete %></p>
+          <p>
+            <%= link_to "#{ guest.to_export ? 'Remove from export' : 'Add to export'}", to_export_guest_path(guest), method: :put, class: "btn #{ guest.to_export ? 'btn-danger' : 'btn-success' }" %>
+          </p>
+          <p><%= link_to 'Edit', edit_guest_path(guest), class: "btn btn-secondary my-button" %></p>
+          <p><%= link_to 'Delete', guest_path(guest), method: :delete, class: "btn btn-outline-danger my-button" %></p>
 
           </div>
         <% end %>
@@ -23,7 +26,7 @@
     <%= link_to 'Add new guest', new_guest_path, class: "btn btn-info" %>
     <!-- 1. Define some markup -->
     <button class="btn" data-clipboard-text="
-<% @guests.each do |guest| %>
+<% @guests_to_export.each do |guest| %>
 Guest Name(s): <%= guest.name %>
 Guest Age(s): <%= guest.age %>
 Description: <%= guest.description %>
@@ -50,3 +53,5 @@ Action Plan: <%= guest.actionplan %>
     </script>
   </div>
 </div>
+
+<br>
