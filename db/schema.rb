@@ -17,16 +17,14 @@ ActiveRecord::Schema.define(version: 20171028034154) do
 
   create_table "guests", force: :cascade do |t|
     t.string "name"
-    t.integer "age"
+    t.string "age"
     t.text "description"
     t.string "hostconnected"
     t.string "whereseated"
-    t.boolean "leaderorpastor"
-    t.boolean "tobeconnected"
     t.text "actionplan", default: "To be decided"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "to_export", default: false
+    t.boolean "to_export", default: true
   end
 
 end
