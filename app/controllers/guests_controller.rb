@@ -38,13 +38,14 @@ class GuestsController < ApplicationController
   end
 
   def export
-    @guests = Guest.all
+    @guests = Guest.all.order(:created_at)
   end
 
   def to_export
     @guest = Guest.find(params[:id])
     @guest.toggle(:to_export).save
-    redirect_to guests_path
+    @guests = Guest.all.order(:created_at)
+    @guests_to_export = Guest.where("to_export = true")
   end
 
   private

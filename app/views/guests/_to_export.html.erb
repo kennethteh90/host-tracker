@@ -1,0 +1,17 @@
+<% guests.each do |guest| %>
+<div class="card p-1 m-y-1">
+
+  <p id="<%=guest.name%>"><b>Guest Name(s):</b> <%= guest.name %></p>
+  <p><b>Guest Age(s:</b> <%= guest.age %></p>
+  <p><b>Description:</b> <%= guest.description %></p>
+  <p><b>Host(s) Connected:</b> <%= guest.hostconnected %></p>
+  <p><b>Guest(s) seated at:</b> <%= guest.whereseated %></p>
+  <p><b>Action Plan:</b> <%= guest.actionplan %></p>
+  <p><%= link_to 'Edit', edit_guest_path(guest), class: "btn btn-secondary my-button" %></p>
+  <p><%= link_to 'Delete', guest_path(guest), method: :delete, class: "btn btn-outline-danger my-button", data: {confirm: "Are you sure?"} %></p>
+  <p>
+    <%= link_to "#{ guest.to_export ? 'Remove from export' : 'Add to export'}", to_export_guest_path(guest), method: :put, class: "btn #{ guest.to_export ? 'btn-danger' : 'btn-success' }", remote: true %>
+  </p>
+
+</div>
+<% end %>

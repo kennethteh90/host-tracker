@@ -8,11 +8,38 @@
       <%= f.input :name, label: 'Guest Name(s)', placeholder: 'Bob' %>
       <%= f.input :age, label: 'Guest Age(s)', placeholder: '27' %>
       <%= f.input :description, placeholder: 'How they heard about us / Purpose of Visit / Stage of life' %>
-      <%= f.input :hostconnected, label: 'Host(s) Connected',placeholder: 'Kenneth' %>
-      <%= f.input :whereseated, label: 'Guest(s) seated at',placeholder: 'C3' %>
-      <%= f.input :leaderorpastor, inline_label: 'Is the guest a leader or pastor?' %>
-      <%= f.input :tobeconnected, inline_label: 'Does the guest want to be connected?' %>
+      <%= f.input :hostconnected, label: 'Host(s) Connected', placeholder: 'Kenneth' %>
+
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary my-2" data-toggle="modal" data-target="#exampleModal">
+        View Seating Plan
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade modal-size" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Seating Plan</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <%= image_tag ("ImaginariumSeats.jpeg"), class: "img-fluid img-height" %>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <%= f.input :whereseated, label: 'Guest(s) seated at', placeholder: 'C3 K2' %>
       <%= f.button :submit %>
     <% end %>
+    <%= link_to 'Back to home', guests_path, class: "btn btn-primary" %>
   </div>
+
 </div>

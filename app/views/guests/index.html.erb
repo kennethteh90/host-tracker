@@ -1,29 +1,24 @@
 <h3 class="jumbotron fluid">Host Guest Tracker</h3><br>
-<div class="container-fluid">
+<div class="container-fluid" id = "top">
   <div class="col-12">
 
-        <% @guests.each do |guest| %>
-          <div class="card p-1">
+    <%= link_to 'Add new guest', new_guest_path, class: "btn btn-info" %>
+    <br><br>
 
-          <p><b>Guest Name(s):</b> <%= guest.name %></p>
-          <p><b>Guest Age(s:</b> <%= guest.age %></p>
-          <p><b>Description:</b> <%= guest.description %></p>
-          <p><b>Host(s) Connected:</b> <%= guest.hostconnected %></p>
-          <p><b>Guest(s) seated at:</b> <%= guest.whereseated %></p>
-          <p><b>Leader/Pastor?:</b> <%= guest.leaderorpastor %></p>
-          <p><b>To be connected?:</b> <%= guest.tobeconnected %></p>
-          <p><b>Action Plan:</b> <%= guest.actionplan %></p>
-          <p>
-            <%= link_to "#{ guest.to_export ? 'Remove from export' : 'Add to export'}", to_export_guest_path(guest), method: :put, class: "btn #{ guest.to_export ? 'btn-danger' : 'btn-success' }" %>
-          </p>
-          <p><%= link_to 'Edit', edit_guest_path(guest), class: "btn btn-secondary my-button" %></p>
-          <p><%= link_to 'Delete', guest_path(guest), method: :delete, class: "btn btn-outline-danger my-button" %></p>
+    <div class="card p-1">
+      <h5>Guests</h5>
+      <% @guests.each.with_index do |guest, index| %>
+      <p><b><%= index + 1 %>. <a href= #<%= guest.name %> > <%= guest.name %> </a></b></p>
+      <% end %>
+    </div>
 
-          </div>
-        <% end %>
+
+    <div id="to-export">
+      <%= render partial: 'to_export', locals: { guests: @guests } %>
+    </div>
+
 
     <br>
-    <%= link_to 'Add new guest', new_guest_path, class: "btn btn-info" %>
     <!-- 1. Define some markup -->
     <button class="btn" data-clipboard-text="
 <% @guests_to_export.each do |guest| %>
@@ -32,14 +27,9 @@ Guest Age(s): <%= guest.age %>
 Description: <%= guest.description %>
 Host(s) Connected: <%= guest.hostconnected %>
 Guest(s) seated at: <%= guest.whereseated %>
-Leader/Pastor?: <%= guest.leaderorpastor %>
-To be connected?: <%= guest.tobeconnected %>
 Action Plan: <%= guest.actionplan %>
 
 <% end %>">Export to Telegram</button>
-
-    <!-- 2. Include library -->
-    <script src="../dist/clipboard.min.js"></script>
 
     <!-- 3. Instantiate clipboard by passing a string selector -->
     <script>
@@ -51,7 +41,9 @@ Action Plan: <%= guest.actionplan %>
         console.log(e);
     });
     </script>
+    <a href="#top" class="btn btn-primary mx-3">Back to top</a>
   </div>
 </div>
+
 
 <br>
