@@ -8,7 +8,7 @@
     <div class="card p-1">
       <h5>Guests</h5>
       <% @guests.each.with_index do |guest, index| %>
-      <p><b><%= index + 1 %>. <a href= #<%= guest.name %> > <%= guest.name %> </a></b></p>
+      <p><b><%= index + 1 %>. <a href= #<%= guest.name.split(' ').join %> > <%= guest.name %> </a></b></p>
       <% end %>
     </div>
 
@@ -19,29 +19,11 @@
 
 
     <br>
-    <!-- 1. Define some markup -->
-    <button class="btn" data-clipboard-text="
-<% @guests_to_export.each do |guest| %>
-Guest Name(s): <%= guest.name %>
-Guest Age(s): <%= guest.age %>
-Description: <%= guest.description %>
-Host(s) Connected: <%= guest.hostconnected %>
-Guest(s) seated at: <%= guest.whereseated %>
-Action Plan: <%= guest.actionplan %>
 
-<% end %>">Export to Telegram</button>
+    <div id="exportbutton">
+      <%= render partial: 'exportbutton', locals: { guests_to_export: @guests_to_export } %>
+    </div>
 
-    <!-- 3. Instantiate clipboard by passing a string selector -->
-    <script>
-    var clipboard = new Clipboard('.btn');
-    clipboard.on('success', function(e) {
-        console.log(e);
-    });
-    clipboard.on('error', function(e) {
-        console.log(e);
-    });
-    </script>
-    <a href="#top" class="btn btn-primary mx-3">Back to top</a>
   </div>
 </div>
 

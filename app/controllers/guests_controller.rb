@@ -38,6 +38,7 @@ class GuestsController < ApplicationController
   end
 
   def export
+    redirect_to guests_path
     @guests = Guest.all.order(:created_at)
   end
 
@@ -51,7 +52,7 @@ class GuestsController < ApplicationController
   private
 
   def guest_params
-    params.require(:guest).permit(:name, :age, :description, :hostconnected, :whereseated, :leaderorpastor, :tobeconnected, :actionplan, :to_export)
+    params.require(:guest).permit(:name, :age, :heard, :purpose, :church, :description, :hostconnected, :whereseated, :actionplan, :to_export)
   end
 
 end

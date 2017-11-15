@@ -5,17 +5,48 @@
 <div class="container">
   <div class="col-10">
     <%= simple_form_for(@guest, html: { class: 'form-horizontal' }) do |f| %>
-      <%= f.input :name, label: 'Guest Name(s)' %>
-      <%= f.input :age, label: 'Guest Age(s)' %>
-      <%= f.input :description %>
-      <%= f.input :hostconnected, label: 'Host(s) Connected' %>
-      <%= f.input :whereseated, label: 'Guest(s) seated at' %>
+    <%= f.input :name, label: 'Name & brief description', placeholder: 'Mark and Lisa from Indonesia GBI' %>
+    <%= f.input :age, label: 'Age/Phase of life', placeholder: 'Both are in early 40s' %>
+    <%= f.input :heard, label: 'How they heard about us', placeholder: 'through Instagram' %>
+    <%= f.input :purpose, label: 'Purpose of Visit', placeholder: 'both of them are Indonesians, visiting for the first time today. Lisa is here to attend her friend’s wedding and Husband Mark accompanies her. Decided to come check out HOGC while they are here. Flying back Jarkarta tomorrow.' %>
+    <%= f.input :church, label: 'Church/Ministry/Level of commitment', placeholder: 'From Indonesia GBI church, Mark plays guitar for worship team, Lisa plays keyboard for worship team.' %>
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary m-2" data-toggle="modal" data-target="#exampleModal">
+      View Seating Plan
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade modal-size" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Seating Plan</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <%= image_tag ("ImaginariumSeats.jpeg"), class: "img-fluid img-height" %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%= f.input :whereseated, label: 'Seat', placeholder: 'B2 third row, first from K2' %>
+    <%= f.input :description, label: 'Physical appearance description', placeholder: 'Mark is in blue polo and dark jeans' %>
+    <%= f.input :hostconnected, label: 'Host(s) Connected', placeholder: 'Kenneth' %>
+
+
       <%= f.input :to_export, inline_label: 'To export to Telegram?' %>
       <%= f.input :actionplan, label: 'Action Plan' %>
-      <%= f.button :submit %>
+      <%= f.button :submit, class: "btn btn-success m-2" %>
     <% end %>
     <br>
-    <%= link_to 'Delete', guest_path(@guest.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
-    <%= link_to 'Back to home', guests_path, class: "btn btn-primary" %>
+    <%= link_to 'Delete', guest_path(@guest.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger m-2" %>
+    <%= link_to 'Back to home', guests_path, class: "btn btn-primary m-2" %>
   </div>
 </div>

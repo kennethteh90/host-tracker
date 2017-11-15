@@ -5,13 +5,14 @@
 <div class="container">
   <div class="col-10">
     <%= simple_form_for(@guest, html: { class: 'form-horizontal' }) do |f| %>
-      <%= f.input :name, label: 'Guest Name(s)', placeholder: 'Bob' %>
-      <%= f.input :age, label: 'Guest Age(s)', placeholder: '27' %>
-      <%= f.input :description, placeholder: 'How they heard about us / Purpose of Visit / Stage of life' %>
-      <%= f.input :hostconnected, label: 'Host(s) Connected', placeholder: 'Kenneth' %>
+      <%= f.input :name, label: 'Name & brief description', placeholder: 'Mark and Lisa from Indonesia GBI' %>
+      <%= f.input :age, label: 'Age/Phase of life', placeholder: 'Both are in early 40s' %>
+      <%= f.input :heard, label: 'How they heard about us', placeholder: 'through Instagram' %>
+      <%= f.input :purpose, label: 'Purpose of Visit', placeholder: 'both of them are Indonesians, visiting for the first time today. Lisa is here to attend her friend’s wedding and Husband Mark accompanies her. Decided to come check out HOGC while they are here. Flying back Jarkarta tomorrow.' %>
+      <%= f.input :church, label: 'Church/Ministry/Level of commitment', placeholder: 'From Indonesia GBI church, Mark plays guitar for worship team, Lisa plays keyboard for worship team.' %>
 
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary my-2" data-toggle="modal" data-target="#exampleModal">
+      <button type="button" class="btn btn-primary m-2" data-toggle="modal" data-target="#exampleModal">
         View Seating Plan
       </button>
 
@@ -35,11 +36,12 @@
         </div>
       </div>
 
-
-      <%= f.input :whereseated, label: 'Guest(s) seated at', placeholder: 'C3 K2' %>
-      <%= f.button :submit %>
+      <%= f.input :whereseated, label: 'Seat', placeholder: 'B2 third row, first from K2' %>
+      <%= f.input :description, label: 'Physical appearance description', placeholder: 'Mark is in blue polo and dark jeans' %>
+      <%= f.input :hostconnected, label: 'Host(s) Connected', placeholder: 'Kenneth' %>
+      <%= f.button :submit, class: "btn btn-success m-2" %>
     <% end %>
-    <%= link_to 'Back to home', guests_path, class: "btn btn-primary" %>
+    <%= link_to 'Back to home', guests_path, class: "btn btn-primary m-2" %>
   </div>
 
 </div>

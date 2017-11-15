@@ -1,0 +1,29 @@
+<!-- 1. Define some markup -->
+<button class="btn btn-secondary m-2" data-clipboard-text="
+<% guests_to_export.each do |guest| %>
+Name & brief description: <%= guest.name %>
+Age/Phase of life: <%= guest.age %>
+How they heard about us: <%= guest.heard %>
+Purpose of visit: <%= guest.purpose %>
+Church/Ministry/Level of commitment: <%= guest.church %>
+Seat: <%= guest.whereseated %>
+Physical appearance description: <%= guest.description %>
+Host(s) Connected: <%= guest.hostconnected %>
+Action Plan: <%= guest.actionplan %>
+
+<% end %>">
+  Export to Telegram
+</button>
+
+<!-- 3. Instantiate clipboard by passing a string selector -->
+<script>
+  var clipboard = new Clipboard('.btn');
+  clipboard.on('success', function(e) {
+      console.log(e);
+  });
+  clipboard.on('error', function(e) {
+      console.log(e);
+  });
+</script>
+
+<a href="#top" class="btn btn-primary m-2">Back to top</a>
