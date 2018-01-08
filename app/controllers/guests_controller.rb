@@ -1,5 +1,7 @@
 class GuestsController < ApplicationController
 
+  before_action :authenticate_user!
+
   def index
     @guests = Guest.all.order(:created_at)
     @guests_to_export = Guest.where("to_export = true")
